@@ -1,0 +1,6 @@
+deployment:
+  imageRepo: malleswari1234/cart
+  imageVersion: v1
+service:
+  type: ClusterIP 
+  servicePort: 8080

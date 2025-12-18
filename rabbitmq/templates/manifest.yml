@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         env:
         - name: RABBITMQ_DEFAULT_USER
           value: roboshop
@@ -49,11 +49,12 @@ metadata:
   name: rabbitmq
   namespace: roboshop
 spec:
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     component: rabbitmq
     tier: db
   ports:
   - protocol: TCP
-    port: 5672 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 5672 # container port 

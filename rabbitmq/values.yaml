@@ -1,0 +1,6 @@
+deployment:
+  imageRepo: rabbitmq
+  imageVersion: 3
+service:
+  type: ClusterIP 
+  servicePort: 5672

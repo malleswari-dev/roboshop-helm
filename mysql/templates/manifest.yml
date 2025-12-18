@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: malleswari1234/mysql:v1
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         # readinessProbe:
         #   tcpSocket:
@@ -64,11 +64,12 @@ metadata:
   name: mysql
   namespace: roboshop
 spec:
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     component: mysql
     tier: db
   ports:
   - protocol: TCP
-    port: 3306 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 3306 # container port 

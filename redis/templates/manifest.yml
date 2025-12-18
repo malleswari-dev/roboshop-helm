@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:7.0
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
@@ -44,11 +44,12 @@ metadata:
   name: redis
   namespace: roboshop
 spec:
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     component: redis
     tier: db
   ports:
   - protocol: TCP
-    port: 6379 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 6379 # container port 

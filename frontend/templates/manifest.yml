@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: malleswari1234/frontend:v1
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         ports:
         - name: liveness-port
@@ -129,12 +129,12 @@ metadata:
   name: frontend
   namespace: roboshop
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }} 
   selector:
     project: roboshop
     component: frontend
     tier: frontend
   ports:
   - protocol: TCP
-    port: 80 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 8080 # container port 

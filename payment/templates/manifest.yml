@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: malleswari1234/payment:v1
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
@@ -67,11 +67,12 @@ metadata:
   name: payment
   namespace: roboshop
 spec:
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     component: payment
     tier: backend
   ports:
   - protocol: TCP
-    port: 8080 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 8080 # container port 

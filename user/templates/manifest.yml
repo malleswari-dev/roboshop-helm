@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: malleswari1234/user:v1
+        image: "{{ .Values.deployment.imageRepo }}:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
@@ -63,11 +63,12 @@ metadata:
   name: user
   namespace: roboshop
 spec:
+  type: {{ .Values.service.type }}
   selector:
     project: roboshop
     component: user
     tier: backend
   ports:
   - protocol: TCP
-    port: 8080 # service port
+    port: {{ .Values.service.servicePort }} # service port
     targetPort: 8080 # container port 

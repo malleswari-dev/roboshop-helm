@@ -1,0 +1,6 @@
+deployment:
+  imageRepo: malleswari1234/frontend
+  imageVersion: v1
+service:
+  type: LoadBalancer
+  servicePort: 80

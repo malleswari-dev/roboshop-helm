@@ -1,0 +1,7 @@
+deployment:
+  imageRepo: malleswari1234/catalogue
+  imageVersion: v1
+service:
+  type: ClusterIP 
+configMap: 
+  MONGO_URL:  "mongodb://mongodb:27017/catalogue"

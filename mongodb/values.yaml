@@ -2,4 +2,4 @@ deployment:
   imageRepo: malleswari1234/mongodb
   imageVersion: v1
 service:
-  type: clusterIp   
+  type: ClusterIp   
